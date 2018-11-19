@@ -26,7 +26,9 @@
     "cors": "^2.8.4",
     "express": "^4.16.4",
     "mongoose": "^5.3.9",
+    "ng2-slim-loading-bar": "^4.0.0",
     "rxjs": "~6.3.3",
+    "rxjs-compat": "^6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
