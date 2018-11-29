@@ -1,0 +1,19 @@
+<form [formGroup]="settingForm" novalidate>
+  <div class="row col-md-12">
+    <div class="col-md-2" align="right">
+      <label>Customer ID Format</label>
+    </div>
+    <div class="col-md-1">
+      <input type="number" class="form-control" name="customer_id" required formControlName="customer_id" />
+    </div>
+    <div class="col-md-2" align="right">
+      <label >Product ID Format</label>
+    </div>
+    <div class="col-md-1">
+      <input type="number" class="form-control" name="product_id" formControlName="product_id" required />
+    </div>
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary"  (click)="SaveSettings()">Save</button>
+      </div>
+  </div>
+</form>

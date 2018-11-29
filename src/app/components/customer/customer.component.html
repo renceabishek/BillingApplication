@@ -1,86 +1,87 @@
 <div class="card">
   <div class="card-body">
-    <form [formGroup]="angForm" novalidate>
+    <form [formGroup]="cusForm" novalidate>
       <div class="row col-md-12">
-        <div class="form-group" class="col-md-3">
-          <label class="col-md-4">Customer ID</label>
-          <input type="text" class="form-control" name="customer_id" required formControlName="customer_id" #customer_id />
 
-          <div *ngIf="angForm.controls['customer_id'].invalid && (angForm.controls['customer_id'].dirty || angForm.controls['customer_id'].touched)"
-            class="alert alert-danger">
-            <div *ngIf="angForm.controls['customer_id'].errors.required">
-              Customer Id is required.
-            </div>
-          </div>
+        <div class="col-md-2" align='right'>
+          <label>Customer Name</label>
         </div>
-
-        <div class="form-group" class="col-md-3">
-          <label class="col-md-4">Customer Name</label>
+        <div class="col-md-2">
           <input type="text" class="form-control" name="customer_name" formControlName="customer_name" #customer_name />
-          <div *ngIf="angForm.controls['customer_name'].invalid && (angForm.controls['customer_name'].dirty || angForm.controls['customer_name'].touched)"
-            class="alert alert-danger">
-            <div *ngIf="angForm.controls['customer_name'].errors.required">
-              Customer Name is required.
-            </div>
-          </div>
         </div>
 
-        <div class="form-group" class="col-md-3">
-          <label class="col-md-4">Mobile Number</label>
+        <div class="col-md-2" align="right">
+          <label>Mobile Number</label>
+        </div>
+        <div class="col-md-2">
           <input type="text" class="form-control" name="customer_mobno" formControlName="customer_mobno"
             #customer_mobno />
-          <div *ngIf="angForm.controls['customer_mobno'].invalid && (angForm.controls['customer_mobno'].dirty || angForm.controls['customer_mobno'].touched)"
-            class="alert alert-danger">
-            <div *ngIf="angForm.controls['customer_mobno'].errors.required">
-              Mobile No is required.
-            </div>
-          </div>
         </div>
 
-        <div class="form-group" class="col-md-3">
-          <label class="col-md-4">Buyers Code</label>
+        <div class="col-md-2" align="right">
+          <label>Buyers Code</label>
+        </div>
+        <div class="col-md-2">
           <input type="text" class="form-control" name="customer_buyerscode" formControlName="customer_buyerscode"
             #customer_buyerscode />
-          <div *ngIf="angForm.controls['customer_buyerscode'].invalid && (angForm.controls['customer_buyerscode'].dirty || angForm.controls['customer_buyerscode'].touched)"
-            class="alert alert-danger">
-            <div *ngIf="angForm.controls['customer_buyerscode'].errors.required">
-              Buyers Code is required.
-            </div>
-          </div>
         </div>
 
       </div>
       <div class="row col-md-12">
-        <div class="form-group col-md-3">
-          <label class="col-md-4">TIN No</label>
-          <input type="text" class="form-control" formControlName="customer_tinno" name="customer_tinno" #customer_tinno />
+        <div class="col-md-2" align='right'>
+          <label>TIN No</label>
         </div>
-        <div class="form-group  col-md-3">
-          <label class="col-md-4">State</label>
-          <input type="text" class="form-control" formControlName="customer_state" name="customer_state" #customer_state />
+        <div class="col-md-2">
+          <input type="text" class="form-control" formControlName="customer_tinno" name="customer_tinno"
+            #customer_tinno />
         </div>
-        <div class="form-group  col-md-3">
-          <label class="col-md-4">Email</label>
-          <input type="text" class="form-control" formControlName="customer_email" name="customer_email" #customer_email />
+        <div class="col-md-2" align='right'>
+          <label>State</label>
         </div>
-        <div class="form-group  col-md-3">
-          <label class="col-md-4">Address</label>
-          <input type="text" class="form-control" formControlName="customer_address" name="customer_address" #customer_address />
+        <div class="col-md-2">
+          <input type="text" class="form-control" formControlName="customer_state" name="customer_state"
+            #customer_state />
+        </div>
+
+        <div class="col-md-2" align='right'>
+          <label>Address</label>
+        </div>
+        <div class="form-group col-md-2">
+          <input type="text" class="form-control" formControlName="customer_address" name="customer_address"
+            #customer_address />
         </div>
       </div>
       <div class="row col-md-12">
-        <div class="form-group  col-md-3">
-          <label class="col-md-4">Pin Code</label>
-          <input type="text" class="form-control" formControlName="customer_pincode" name="customer_pincode" #customer_pincode />
+        <div class="col-md-2" align='right'>
+          <label>Email</label>
         </div>
-        <div class="form-group  col-md-3">
-          <label class="col-md-4">Remarks</label>
-          <input type="text" class="form-control" formControlName="customer_remarks" name="customer_remarks" #customer_remarks />
+        <div class="col-md-2">
+          <input type="text" class="form-control" formControlName="customer_email" name="customer_email"
+            #customer_email />
         </div>
-        <div class="form-group  col-md-3">
-          <button (click)="addCustomer()"
-            [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Create Customer</button>
+
+        <div class="col-md-2" align='right'>
+          <label>Remarks</label>
         </div>
+
+        <div class="col-md-2">
+          <input type="text" class="form-control" formControlName="customer_remarks" name="customer_remarks"
+            #customer_remarks />
+        </div>
+       
+      </div>
+      <div class="row col-md-12">
+        <div class="col-md-2" align='right'>
+          <label>Pin Code</label>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" formControlName="customer_pincode" name="customer_pincode"
+            #customer_pincode />
+        </div>
+        <div class="col-md-3">
+            <button (click)="addCustomer()" [disabled]="cusForm.pristine || cusForm.invalid" class="btn btn-primary">Create
+              Customer</button>
+          </div>
       </div>
     </form>
   </div>

@@ -31,8 +31,17 @@ export class CustomerService {
       .subscribe(res => console.log('Done'));
   }
 
-  getCustomers() {
+  getCustomers(): Observable<Object> {
     return this.http.get(`${this.uri}`);
+  }
+
+  editCustomer(inputMap) {
+    // this.http.post(`${this.uri}/edit/${inputMap.productid}`, inputMap).subscribe(res => console.log('Done'));
+    return this.http.post(`${this.uri}/edit/${inputMap.productid}`, inputMap);
+  }
+  deleteCustomer(inputMap) {
+    var id = inputMap.product
+    return this.http.post(`${this.uri}/delete/${id}`, inputMap);
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../../services/customer.service';
-import { CustomerUnit } from './customerUnit';
+import { Observable, of } from 'rxjs';
 
 
 @Component({
@@ -11,15 +11,18 @@ import { CustomerUnit } from './customerUnit';
 })
 export class CustomerComponent implements OnInit {
 
-  angForm: FormGroup;
-  CustomerUnit:CustomerUnit[];
+  cusForm: FormGroup;
 
   constructor(private custservice: CustomerService, private fb: FormBuilder) {
     this.CreateForm();
   }
 
+  ngOnInit() {
+    this.getCustomers();
+  }
+
   CreateForm() {
-    this.angForm = this.fb.group({
+    this.cusForm = this.fb.group({
       customer_id: ['', Validators.required],
       customer_name: ['', Validators.required],
       customer_mobno: ['', Validators.required],
@@ -34,14 +37,13 @@ export class CustomerComponent implements OnInit {
   }
   
 
-  ngOnInit() {
-    this.custservice.getCustomers().subscribe((data: CustomerUnit[]) => {
-      this.CustomerUnit = data;
-    });
+  getCustomers(){
+    this.custservice.getCustomers();
   }
 
   addCustomer() {
-    console.log('--val'+this.angForm.value.customer_name);
-    this.custservice.addCustomer(this.angForm.value);
+    console.log('--val'+this.cusForm.value.customer_name);
+    this.custservice.addCustomer(this.cusForm.value);
+    
   }
 }
