@@ -1,13 +1,13 @@
 <div class="card">
   <div class="card-body">
-    <form [formGroup]="cusForm" novalidate>
+    <form [formGroup]="cusForm" >
       <div class="row col-md-12">
 
         <div class="col-md-2" align='right'>
           <label>Customer Name</label>
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="customer_name" formControlName="customer_name" #customer_name />
+          <input type="text" class="form-control" name="customer_name" formControlName="customer_name"  />
         </div>
 
         <div class="col-md-2" align="right">
@@ -68,7 +68,7 @@
           <input type="text" class="form-control" formControlName="customer_remarks" name="customer_remarks"
             #customer_remarks />
         </div>
-       
+
       </div>
       <div class="row col-md-12">
         <div class="col-md-2" align='right'>
@@ -79,42 +79,22 @@
             #customer_pincode />
         </div>
         <div class="col-md-3">
-            <button (click)="addCustomer()" [disabled]="cusForm.pristine || cusForm.invalid" class="btn btn-primary">Create
-              Customer</button>
-          </div>
+          <button (click)="addCustomer()" [disabled]="cusForm.pristine || cusForm.invalid" class="btn btn-primary">{{btnValue}}</button>
+          
+        </div>
+        <div class="col-sm-1">
+          <button  class="buttonGroup" [disabled]="!selectedCustomer" (click)="deleteCustomer()">Delete</button>
+        </div>
+        <div class="col-sm-1">
+          <button  class="buttonGroup" [disabled]="!selectedCustomer || cusForm.pending " (click)="clearFields()">Clear</button>
+        </div>
       </div>
     </form>
   </div>
 </div>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <td>Customer Id</td>
-      <td>Customer Name</td>
-      <td>Mobile No</td>
-      <td>Buyers Code</td>
-      <td>TIN No</td>
-      <td>State</td>
-      <td>Email</td>
-      <td>Address</td>
-      <td>Pin Code</td>
-      <td>Remarks</td>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr *ngFor="let cusUnit of CustomerUnit">
-      <td>{{ cusUnit.customer_id }}</td>
-      <td>{{ cusUnit.customer_name }}</td>
-      <td>{{ cusUnit.customer_buyerscode }}</td>
-      <td>{{ cusUnit.customer_tinno }}</td>
-      <td>{{ cusUnit.customer_state }}</td>
-      <td>{{ cusUnit.customer_mobno }}</td>
-      <td>{{ cusUnit.customer_email }}</td>
-      <td>{{ cusUnit.customer_address }}</td>
-      <td>{{ cusUnit.customer_pincode }}</td>
-      <td>{{ cusUnit.customer_remarks }}</td>
-    </tr>
-  </tbody>
-</table>
+<div ng-if="rowData" class="customerDT">
+  <ag-grid-angular style="width: 90%; height: 390px;" rowSelection="single" [enableColResize]="true" (rowClicked)='onRowClicked($event)'
+    [enableSorting]="true" [enableFilter]="true" class="ag-theme-blue" [rowData]="rowData | async" [columnDefs]="columnDefs">
+  </ag-grid-angular>
+</div>

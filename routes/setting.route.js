@@ -27,4 +27,21 @@ settingsRoute.route('/add').post(function (req, res) {
     });
   });
 
+  settingsRoute.route('/edit/:id').post(function (req, res) {
+    let id = req.params.id || req.body._id;
+    console.log('dhc');
+    Setting.find({ _id: id }, function (err, produ) {
+      var prod = produ[0];
+      if (prod) {
+        prod.product_id = req.body.product_id;
+        prod.customer_id = req.body.customer_id;  
+        prod.save().then(adUnit => {
+          res.json('Update complete');
+        }).catch(err => {
+          res.status(400).send("unable to update the database");
+        });
+      }
+    });
+  });
+
   module.exports = settingsRoute;

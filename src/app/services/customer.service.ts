@@ -13,22 +13,9 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  addCustomer(customer) {
-    const obj = {
-      customer_id: customer.customer_id,
-      customer_name: customer.customer_name,
-      customer_buyerscode: customer.customer_buyerscode,
-      customer_tinno: customer.customer_tinno,
-      customer_state: customer.customer_state,
-      customer_mobno: customer.customer_mobno,
-      customer_email: customer.customer_email,
-      customer_address: customer.customer_address,
-      customer_pincode: customer.customer_pincode,
-      customer_remarks: customer.customer_remarks
-    };
-    console.log('obje'+JSON.stringify(obj));
-    this.http.post(`${this.uri}/add`, obj)
-      .subscribe(res => console.log('Done'));
+  addCustomer(inputMap) {
+    console.log('print '+inputMap[0]);
+    return this.http.post(`${this.uri}/add`, inputMap);
   }
 
   getCustomers(): Observable<Object> {
@@ -37,7 +24,7 @@ export class CustomerService {
 
   editCustomer(inputMap) {
     // this.http.post(`${this.uri}/edit/${inputMap.productid}`, inputMap).subscribe(res => console.log('Done'));
-    return this.http.post(`${this.uri}/edit/${inputMap.productid}`, inputMap);
+    return this.http.post(`${this.uri}/edit/${inputMap.customer_id}`, inputMap);
   }
   deleteCustomer(inputMap) {
     var id = inputMap.product

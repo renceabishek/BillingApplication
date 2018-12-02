@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductUnit } from '../../../../models/ProductUnit';
+import { SettingsService } from '../../services/settings.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -27,13 +28,24 @@ export class ProductComponent implements OnInit {
   { headerName: 'MRP', field: 'mrp' , width:150},
   { headerName: 'Rate', field: 'rate' , width:150},
   { headerName: 'Product Name in Tamil', field: 'tamilname' , width:280}];
-  constructor(private prodservice: ProductService) { }
+  constructor(private prodservice: ProductService,private setService: SettingsService) { }
 
   ngOnInit() {
     this.getProducts();
     this.selectedProduct = null;
   }
+
+  settingsval : any;
+  getProductId() {    
+    this.setService.getSettings().subscribe(data=>{
+      this.settingsval=data;
+      console.log(this.settingsval[0].product_id);
+    });
+    this.setService.saveSettings
+  }
+
   addProduct() {
+    var customerid = this.getProductId();
     var productid = this.productForm.get('productid').value;
     var productname = this.productForm.get('productname').value;
     var hsn = this.productForm.get('hsn').value;

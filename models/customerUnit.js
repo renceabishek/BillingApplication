@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 // Define collection and schema for AdUnits
 let customerUnit = new Schema({
     customer_id: {
-        type: String,
-        required: true
+        type: String
     },
     customer_name: {
         type: String,
@@ -16,8 +15,7 @@ let customerUnit = new Schema({
         required: true
     },
     customer_tinno: {
-        type: String,
-        required: true
+        type: String
     },
     customer_state: {
         type: String
@@ -39,7 +37,7 @@ let customerUnit = new Schema({
         type: String
     }
 }, {
-        collection: 'adunits'
+        collection: 'customers'
     });
 
 module.exports = mongoose.model('customerUnit', customerUnit);
