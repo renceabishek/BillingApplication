@@ -19,6 +19,17 @@ export class CustomerComponent implements OnInit {
   settingsval: any;
   globalcustomerid: Number;
 
+  columnDefs = [{ headerName: 'Customer ID', field: 'customer_id', width: 150 },
+  { headerName: 'Customer Name', field: 'customer_name', width: 280 },
+  { headerName: 'Mobile No', field: 'customer_mobno', width: 150 },
+  { headerName: 'Buyers Code', field: 'customer_buyerscode', width: 150 },
+  { headerName: 'TIN No', field: 'customer_tinno', width: 150 },
+  { headerName: 'State', field: 'customer_state', width: 280 },
+  { headerName: 'Mobile No', field: 'customer_email', width: 280 },
+  { headerName: 'Address', field: 'customer_address', width: 280 },
+  { headerName: 'PIN Code', field: 'customer_pincode', width: 280 },
+  { headerName: 'Remarks', field: 'customer_remarks', width: 280 }];
+
   constructor(private custservice: CustomerService, private fb: FormBuilder,
     private setService: SettingsService) {
     this.CreateForm();
@@ -32,7 +43,6 @@ export class CustomerComponent implements OnInit {
 
   CreateForm() {
     this.cusForm = this.fb.group({
-      customer_id: ['',],
       customer_name: ['', Validators.required],
       customer_mobno: ['', Validators.required],
       customer_buyerscode: ['', Validators.required],
@@ -51,22 +61,13 @@ export class CustomerComponent implements OnInit {
 
   }
 
-  addCustomer() {
-    this.setService.getSettings().subscribe(data => {
-      var retVal = data[0].customer_id + 1;
-      var obj = {
-        "product_id": data[0].product_id,
-        "customer_id": retVal,
-        "_id": data[0]._id
-      }
-      this.setService.editSettings(obj).subscribe(t=>{
-        console.log('completed');
-      });
-      console.log(retVal);
-      this.globalcustomerid = retVal;
-    });
-
-    console.log('id' + this.globalcustomerid);
+  async addCustomer() {
+    if (this.btnValue === 'Add') {
+      this.globalcustomerid = <Number>await this.getCustomerId();
+      console.log('id' + this.globalcustomerid);
+    } else {
+      this.globalcustomerid = this.selectedCustomer;
+    }
     var obj = {
       "customer_id": this.globalcustomerid,
       "customer_name": this.cusForm.get('customer_name').value,
@@ -86,6 +87,7 @@ export class CustomerComponent implements OnInit {
       });
 
     } else {
+      console.log('-->inside');
       this.custservice.editCustomer(obj).subscribe(t => {
         this.getCustomers();
       });
@@ -112,7 +114,7 @@ export class CustomerComponent implements OnInit {
   }
 
   onRowClicked(event: any) {
-    this.selectedCustomer = event.data.customer_name
+    this.selectedCustomer = event.data.customer_id;
     this.cusForm.setValue({
       customer_name: event.data.customer_name,
       customer_mobno: event.data.customer_mobno,
@@ -122,14 +124,27 @@ export class CustomerComponent implements OnInit {
       customer_address: event.data.customer_address,
       customer_email: event.data.customer_email,
       customer_remarks: event.data.customer_remarks,
-      customer_pincode: event.data.customer_pincode,
+      customer_pincode: event.data.customer_pincode
     });
     this.btnValue = "Update";
   }
 
   // Fetch Unique CutomerID from settings DB
   getCustomerId() {
-
-
+    return new Promise(resolve => {
+      this.setService.getSettings().subscribe(data => {
+        var retVal = data[0].customer_id + 1;
+        var obj = {
+          "product_id": data[0].product_id,
+          "customer_id": retVal,
+          "_id": data[0]._id
+        }
+        this.setService.editSettings(obj).subscribe(t => {
+          console.log('completed');
+        });
+        console.log(retVal);
+        resolve(retVal);
+      });
+    });
   }
 }

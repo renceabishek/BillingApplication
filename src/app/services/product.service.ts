@@ -16,7 +16,7 @@ export class ProductService {
     return this.http.get(`${this.uri}/`);
   }
   editProduct(inputMap) {
-    // this.http.post(`${this.uri}/edit/${inputMap.productid}`, inputMap).subscribe(res => console.log('Done'));
+    console.log('--check');
     return this.http.post(`${this.uri}/edit/${inputMap.productid}`, inputMap);
   }
   deleteProduct(inputMap) {

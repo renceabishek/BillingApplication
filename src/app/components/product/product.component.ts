@@ -60,7 +60,7 @@ export class ProductComponent implements OnInit {
     } else {
       this.prodservice.editProduct(inputMap).subscribe(t => {
         this.getProducts();
-      });
+      }); 
     }
     this.clearFields();
   }

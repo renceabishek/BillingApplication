@@ -23,7 +23,7 @@ export class CustomerService {
   }
 
   editCustomer(inputMap) {
-    // this.http.post(`${this.uri}/edit/${inputMap.productid}`, inputMap).subscribe(res => console.log('Done'));
+    console.log('me');
     return this.http.post(`${this.uri}/edit/${inputMap.customer_id}`, inputMap);
   }
   deleteCustomer(inputMap) {

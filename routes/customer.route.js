@@ -29,6 +29,7 @@ adUnitRoutes.route('/').get(function (req, res) {
 
 adUnitRoutes.route('/edit/:id').post(function (req, res) {
     let id = req.params.id || req.body.customer_id;
+    console.log('-->'+id);
     CustomerUnit.find({ customer_id: id }, function (err, cust) {
       var cus = cust[0];
       if (cus) {
