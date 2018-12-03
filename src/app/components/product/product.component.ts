@@ -13,8 +13,9 @@ export class ProductComponent implements OnInit {
   btnValue: String = "Add";
   selectedProduct: String;
   rowData: any;
+  globalproductid : any;
+
   productForm = new FormGroup({
-    productid: new FormControl('', [Validators.required]),
     productname: new FormControl('', [Validators.required]),
     hsn: new FormControl('', [Validators.required]),
     mrp: new FormControl('', [Validators.required]),
@@ -36,23 +37,46 @@ export class ProductComponent implements OnInit {
   }
 
   settingsval : any;
+
   getProductId() {    
-    this.setService.getSettings().subscribe(data=>{
-      this.settingsval=data;
-      console.log(this.settingsval[0].product_id);
+    return new Promise(resolve => {
+      this.setService.getSettings().subscribe(data => {
+        var retVal = data[0].product_id + 1;
+        var obj = {
+          "product_id": retVal,
+          "customer_id": data[0].customer_id,
+          "invoice_no": data[0].invoice_no,
+          "owner_name": data[0].owner_name,
+          "owner_mobno": data[0].owner_mobno,
+          "owner_shname": data[0].owner_shname,
+          "owner_street": data[0].owner_street,
+          "owner_city": data[0].owner_city,
+          "owner_gstin": data[0].owner_gstin,
+          "owner_email": data[0].owner_email,
+          "_id": data[0]._id
+        }
+        this.setService.editSettings(obj).subscribe(t => {
+          console.log('completed');
+        });
+        console.log(retVal);
+        resolve(retVal);
+      });
     });
-    this.setService.saveSettings
   }
 
-  addProduct() {
-    var customerid = this.getProductId();
-    var productid = this.productForm.get('productid').value;
+  async addProduct() {
+    if(this.btnValue === 'Add') {
+      this.globalproductid = <Number> await this.getProductId();
+    } else {
+      this.globalproductid = this.selectedProduct;
+    }
+    
     var productname = this.productForm.get('productname').value;
     var hsn = this.productForm.get('hsn').value;
     var mrp = this.productForm.get('mrp').value;
     var rate = this.productForm.get('rate').value;
     var tamilname = this.productForm.get('tamilname').value;
-    var inputMap = { "productid": productid, "productname": productname, "hsn": hsn, "mrp": mrp, "rate": rate, "tamilname": tamilname };
+    var inputMap = { "productid": this.globalproductid, "productname": productname, "hsn": hsn, "mrp": mrp, "rate": rate, "tamilname": tamilname };
     if (this.btnValue === 'Add') {
       this.prodservice.addProducts(inputMap).subscribe(t => {
         this.getProducts();

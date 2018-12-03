@@ -93,8 +93,6 @@ export class CustomerComponent implements OnInit {
       });
     }
 
-
-
   }
 
   deleteCustomer() {
@@ -137,6 +135,14 @@ export class CustomerComponent implements OnInit {
         var obj = {
           "product_id": data[0].product_id,
           "customer_id": retVal,
+          "invoice_no": data[0].invoice_no,
+          "owner_name": data[0].owner_name,
+          "owner_mobno": data[0].owner_mobno,
+          "owner_shname": data[0].owner_shname,
+          "owner_street": data[0].owner_street,
+          "owner_city": data[0].owner_city,
+          "owner_gstin": data[0].owner_gstin,
+          "owner_email": data[0].owner_email,
           "_id": data[0]._id
         }
         this.setService.editSettings(obj).subscribe(t => {

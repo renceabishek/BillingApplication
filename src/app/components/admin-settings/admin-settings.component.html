@@ -3,17 +3,73 @@
     <div class="col-md-2" align="right">
       <label>Customer ID Format</label>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
       <input type="number" class="form-control" name="customer_id" required formControlName="customer_id" />
     </div>
     <div class="col-md-2" align="right">
-      <label >Product ID Format</label>
+      <label>Product ID Format</label>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
       <input type="number" class="form-control" name="product_id" formControlName="product_id" required />
     </div>
+    <div class="col-md-2" align="right">
+      <label>Invoice No Format</label>
+    </div>
+    <div class="col-md-2">
+      <input type="number" class="form-control" name="invoice_no" formControlName="invoice_no" required />
+    </div>
+  </div>
+  <div class="row col-md-12">
+
+    <div class="col-md-2" align="right">
+      <label>Name</label>
+    </div>
+    <div class="col-md-2">
+      <input  class="form-control" name="owner_name" formControlName="owner_name" required />
+    </div>
+    <div class="col-md-2" align="right">
+      <label>Mobile No</label>
+    </div>
+    <div class="col-md-2">
+      <input type="number" class="form-control" name="owner_mobno" formControlName="owner_mobno" required />
+    </div>
+
+  </div>
+  <div class="row col-md-12">
+    <div class="col-md-2" align="right">
+      <label>Shop Name</label>
+    </div>
+    <div class="col-md-2">
+      <input class="form-control" name="owner_shname" formControlName="owner_shname" required />
+    </div>
+    <div class="col-md-2" align="right">
+      <label>Street Name</label>
+    </div>
+    <div class="col-md-2">
+      <input class="form-control" name="owner_street" formControlName="owner_street" required />
+    </div>
+    <div class="col-md-2" align="right">
+      <label>City</label>
+    </div>
+    <div class="col-md-2">
+      <input  class="form-control" name="owner_city" formControlName="owner_city" required />
+    </div>
+  </div>
+  <div class="row col-md-12">
+    <div class="col-md-2" align="right">
+      <label>GSTIN NO</label>
+    </div>
+    <div class="col-md-2">
+      <input  class="form-control" name="owner_gstin" formControlName="owner_gstin" required />
+    </div>
+    <div class="col-md-2" align="right">
+      <label>Email ID</label>
+    </div>
+    <div class="col-md-2">
+      <input  class="form-control" name="owner_email" formControlName="owner_email" required />
+    </div>
     <div class="col-md-1">
-        <button type="submit" class="btn btn-primary"   (click)="SaveSettings()">{{btnValue}}</button>
-      </div>
+      <button type="submit" class="btn btn-primary" (click)="SaveSettings()">{{btnValue}}</button>
+    </div>
   </div>
 </form>

@@ -2,9 +2,6 @@
   <div class="card-body">
     <form [formGroup]="productForm" (ngSubmit)="addProduct()">
       <div class="form-group row col-sm-12">
-        <label class="col-sm-2">Product ID</label>
-        <input type="number" class="form-control col-sm-2" name="productid" formControlName="productid" required />
-
         <label class="col-sm-2">Product Name</label>
         <input type="text" class="form-control col-sm-2" name="productname" formControlName="productname" />
 
