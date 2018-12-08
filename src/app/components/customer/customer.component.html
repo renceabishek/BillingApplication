@@ -27,7 +27,7 @@
         </div>
 
       </div>
-      <div class="row col-md-12">
+      <div class="row col-md-12" style="margin-top: 5px;">
         <div class="col-md-2" align='right'>
           <label>TIN No</label>
         </div>
@@ -47,11 +47,11 @@
           <label>Address</label>
         </div>
         <div class="form-group col-md-2">
-          <input type="text" class="form-control" formControlName="customer_address" name="customer_address"
-            #customer_address />
+          <textarea class="form-control" style="height:81px" formControlName="customer_address" name="customer_address"
+            #customer_address ></textarea>
         </div>
       </div>
-      <div class="row col-md-12">
+      <div class="row col-md-12" style="margin-top:-52px">
         <div class="col-md-2" align='right'>
           <label>Email</label>
         </div>
@@ -65,12 +65,12 @@
         </div>
 
         <div class="col-md-2">
-          <input type="text" class="form-control" formControlName="customer_remarks" name="customer_remarks"
-            #customer_remarks />
+          <textarea class="form-control" style="height:81px" formControlName="customer_remarks" name="customer_remarks"
+            #customer_remarks ></textarea>
         </div>
 
       </div>
-      <div class="row col-md-12">
+      <div class="row col-md-12" style="margin-top: -35px;">
         <div class="col-md-2" align='right'>
           <label>Pin Code</label>
         </div>
@@ -78,15 +78,18 @@
           <input type="text" class="form-control" formControlName="customer_pincode" name="customer_pincode"
             #customer_pincode />
         </div>
-        <div class="col-md-3">
-          <button (click)="addCustomer()" [disabled]="cusForm.pristine || cusForm.invalid" class="btn btn-primary">{{btnValue}}</button>
+        <div class="col-md-5">
+
+        </div>
+        <div class="col-md-1">
+          <button (click)="addCustomer()" [disabled]="cusForm.pristine || cusForm.invalid" class="btn btn-success buttonWidth100">{{btnValue}}</button>
           
         </div>
-        <div class="col-sm-1">
-          <button  class="buttonGroup" [disabled]="!selectedCustomer" (click)="deleteCustomer()">Delete</button>
+        <div class="col-md-1">
+          <button  class="buttonGroup" [disabled]="!selectedCustomer" class="btn btn-danger buttonWidth100" (click)="deleteCustomer()">Delete</button>
         </div>
-        <div class="col-sm-1">
-          <button  class="buttonGroup" [disabled]="!selectedCustomer || cusForm.pending " (click)="clearFields()">Clear</button>
+        <div class="col-md-1">
+          <button  class="buttonGroup" [disabled]="!selectedCustomer || cusForm.pending " class="btn btn-primary buttonWidth100" (click)="clearFields()">Clear</button>
         </div>
       </div>
     </form>
