@@ -6,7 +6,6 @@ let Product = require('../models/ProductUnit');
 
 productRoutes.route('/add').post(function (req, res) {
   let product = new Product(req.body);
-  console.log("req.body os " + JSON.stringify(req.body));
   product.save()
     .then(game => {
       res.status(200).json({ 'adUnit': 'Products in added successfully' });

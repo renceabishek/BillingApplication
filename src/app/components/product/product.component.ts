@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
-import { ProductUnit } from '../../../../models/ProductUnit';
 import { SettingsService } from '../../services/settings.service';
+import { ProductUnit } from '../../../../models/ProductUnit';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -13,7 +13,7 @@ export class ProductComponent implements OnInit {
   btnValue: String = "Add";
   selectedProduct: String;
   rowData: any;
-  globalproductid : any;
+  globalproductid: any;
 
   productForm = new FormGroup({
     productname: new FormControl('', [Validators.required]),
@@ -23,22 +23,22 @@ export class ProductComponent implements OnInit {
     tamilname: new FormControl('', [Validators.required])
   });
 
-  columnDefs = [{ headerName: 'Product ID', field: 'productid' , width:150},
-  { headerName: 'Product Name', field: 'productname', width:280 },
-  { headerName: 'HSN', field: 'hsn' , width:150},
-  { headerName: 'MRP', field: 'mrp' , width:150},
-  { headerName: 'Rate', field: 'rate' , width:150},
-  { headerName: 'Product Name in Tamil', field: 'tamilname' , width:280}];
-  constructor(private prodservice: ProductService,private setService: SettingsService) { }
+  columnDefs = [{ headerName: 'Product ID', field: 'productid', width: 150 },
+  { headerName: 'Product Name', field: 'productname', width: 280 },
+  { headerName: 'HSN', field: 'hsn', width: 150 },
+  { headerName: 'MRP', field: 'mrp', width: 150 },
+  { headerName: 'Rate', field: 'rate', width: 150 },
+  { headerName: 'Product Name in Tamil', field: 'tamilname', width: 280 }];
+  constructor(private prodservice: ProductService, private setService: SettingsService) { }
 
   ngOnInit() {
     this.getProducts();
     this.selectedProduct = null;
   }
 
-  settingsval : any;
+  settingsval: any;
 
-  getProductId() {    
+  getProductId() {
     return new Promise(resolve => {
       this.setService.getSettings().subscribe(data => {
         var retVal = data[0].product_id + 1;
@@ -65,12 +65,12 @@ export class ProductComponent implements OnInit {
   }
 
   async addProduct() {
-    if(this.btnValue === 'Add') {
-      this.globalproductid = <Number> await this.getProductId();
+    if (this.btnValue === 'Add') {
+      this.globalproductid = <Number>await this.getProductId();
     } else {
       this.globalproductid = this.selectedProduct;
     }
-    
+
     var productname = this.productForm.get('productname').value;
     var hsn = this.productForm.get('hsn').value;
     var mrp = this.productForm.get('mrp').value;
@@ -84,7 +84,7 @@ export class ProductComponent implements OnInit {
     } else {
       this.prodservice.editProduct(inputMap).subscribe(t => {
         this.getProducts();
-      }); 
+      });
     }
     this.clearFields();
   }
