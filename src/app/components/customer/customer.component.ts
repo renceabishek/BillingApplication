@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../../services/customer.service';
 import { SettingsService } from '../../services/settings.service';
-import { Observable, of } from 'rxjs';
-
-
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -58,7 +55,6 @@ export class CustomerComponent implements OnInit {
 
   getCustomers() {
     this.rowData = this.custservice.getCustomers();
-
   }
 
   async addCustomer() {
@@ -92,6 +88,8 @@ export class CustomerComponent implements OnInit {
         this.getCustomers();
       });
     }
+
+
 
   }
 
@@ -135,14 +133,6 @@ export class CustomerComponent implements OnInit {
         var obj = {
           "product_id": data[0].product_id,
           "customer_id": retVal,
-          "invoice_no": data[0].invoice_no,
-          "owner_name": data[0].owner_name,
-          "owner_mobno": data[0].owner_mobno,
-          "owner_shname": data[0].owner_shname,
-          "owner_street": data[0].owner_street,
-          "owner_city": data[0].owner_city,
-          "owner_gstin": data[0].owner_gstin,
-          "owner_email": data[0].owner_email,
           "_id": data[0]._id
         }
         this.setService.editSettings(obj).subscribe(t => {

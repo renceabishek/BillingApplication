@@ -9,7 +9,6 @@ export class CustomerService {
 
 
   uri = 'http://localhost:4000/customer';
-  uri1= 'http://localhost:4000';
 
   constructor(private http: HttpClient) { }
 
