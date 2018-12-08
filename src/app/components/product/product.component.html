@@ -1,4 +1,4 @@
-<div class="card">
+<div class="prod card">
   <div class="card-body">
     <form [formGroup]="productForm" (ngSubmit)="addProduct()">
       <div class="form-group row col-sm-12">
@@ -18,17 +18,14 @@
         <label class="col-sm-2">Rate</label>
         <input type="text" class="form-control col-sm-2" name="rate" formControlName="rate" />
 
-      </div>
-      <div class="form-group row col-sm-12">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-1">
-          <button type="submit" class="buttonGroup" [disabled]="productForm.pristine || productForm.invalid">{{btnValue}}</button>
-        </div>
-        <div class="col-sm-1">
-          <button type="submit" class="buttonGroup" [disabled]="!selectedProduct" (click)="deleteProduct()">Delete</button>
-        </div>
-        <div class="col-sm-1">
-          <button type="submit" class="buttonGroup" [disabled]="!selectedProduct || productForm.pending " (click)="clearFields()">Clear</button>
+        <div class="col-sm-4">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary buttonGroup col-sm-3" style="visibility: hidden">{{btnValue}}</button>
+            <button type="submit" class="btn btn-success buttonGroup col-sm-3" [disabled]="productForm.pristine || productForm.invalid">{{btnValue}}</button>
+            <button type="submit" class="btn btn-danger buttonGroup col-sm-3" [disabled]="!selectedProduct" (click)="deleteProduct()">Delete</button>
+            <button type="submit" class="btn btn-primary buttonGroup col-sm-3" [disabled]="!selectedProduct || productForm.pending "
+              (click)="clearFields()">Clear</button>
+          </div>
         </div>
       </div>
     </form>
