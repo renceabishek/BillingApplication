@@ -1,0 +1,20 @@
+<div class="loginWholeDiv">
+  <div class="loginDiv">
+    <fieldset class="loginContentArea">
+      <legend>Login</legend>
+      <form [formGroup]="loginForm" (ngSubmit)="loginActionPerformed()">
+        <div class="form-group col-sm-12">
+          <div class="form-group row col-sm-12">
+            <input type="text" placeholder="User Name" class="form-control col-sm-12" name="username" formControlName="username"
+              required />
+          </div>
+          <div class="form-group row col-sm-12">
+            <input type="text" placeholder="Password" class="form-control col-sm-12" name="password" formControlName="password"
+              required />
+          </div>
+          <button type="submit" class="buttonGroup" [disabled]="loginForm.invalid">Login</button>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+</div>
